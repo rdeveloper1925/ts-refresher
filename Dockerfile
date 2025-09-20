@@ -52,7 +52,7 @@ RUN touch /var/run/nginx.pid
 #USER nginx
 
 # Expose port (standard HTTP port)
-EXPOSE 8080
+EXPOSE 5173
 
 # Add health check for container orchestration
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
