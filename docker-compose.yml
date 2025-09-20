@@ -57,7 +57,7 @@ services:
     labels:
       - "traefik.enable=true"  # Enable if using Traefik reverse proxy
       - "traefik.http.routers.react-app.rule=Host(`localhost`)"
-      - "com.docker.compose.project=vite-react-app"
+      - "com.docker.compose.project=coolify-front"
     
     # Networks
     networks:
@@ -71,23 +71,37 @@ services:
         max-file: "3"
 
   # Optional: Reverse proxy service (Traefik example)
-  # Uncomment if you want to use a reverse proxy
+  # generate dashboard auth: htpasswd -nb matt "Servering@123" | sed -e 's/\$/\$\$/g'
   reverse-proxy:
-    image: traefik:v2.10
+    image: traefik:v3.5
     container_name: traefik
     command:
-      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--api.insecure=false"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+    
     ports:
       - "80:80"
-      - "8080:8080"  # Traefik dashboard
+      - "443:443"  # Traefik dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - frontend
     restart: unless-stopped
+    labels:
+      # Enable Traefik for this service
+      - "traefik.enable=true"
+
+      # Dashboard router
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard.docker.localhost`)"
+      - "traefik.http.routers.dashboard.entrypoints=web"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      # Basic‑auth middleware
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=matt:$$apr1$$9v40sdO8$$Ox83ReU8JQkwxJgFfWb6X0"
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
 
 # Network configuration
 networks:
