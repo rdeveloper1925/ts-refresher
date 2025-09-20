@@ -14,9 +14,9 @@ services:
     container_name: coolify-front
     
     # Port mapping: host:container
-    ports:
-      #- "80:5173"  # Map host port 3000 to container port 80
-      - "80:80"
+    # ports:
+    #   #- "80:5173"  # Map host port 3000 to container port 80
+    #   - "80:80"
     
     # Environment variables
     environment:
