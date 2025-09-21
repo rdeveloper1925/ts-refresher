@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import BaseLayout from './layouts/BaseLayout'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <BaseLayout>
     <div className='border-2 rounded-2xl'>
       <div className='flex justify-around align-baseline'>
         <a href="https://vite.dev" target="_blank">
@@ -29,6 +30,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
+    </BaseLayout>
+    
   )
 }
 
