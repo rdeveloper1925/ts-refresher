@@ -1,3 +1,4 @@
+import NavBar from "@/components/NavBar";
 import {
     Accordion,
     AccordionContent,
@@ -8,6 +9,7 @@ import {
 const Home = () => {
     return (
         <div className="border-1 rounded p-3 m-3">
+            <NavBar/>
             <Accordion
                 type="single"
                 collapsible
