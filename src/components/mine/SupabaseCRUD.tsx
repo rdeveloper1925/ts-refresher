@@ -62,14 +62,14 @@ const SupabaseCRUDComponent: React.FC = () => {
   };
 
   // Create new user (CREATE)
-  const createUser = async (userData: { name: string; email: string }) => {
+  const createUser = async (userData: never) => {
     try {
       setLoading(true);
       setError(null);
 
       const { data, error } = await supabase
         .from('users')
-        .insert([userData])
+        .insert(userData)
         .select();
 
       if (error) throw error;
@@ -87,7 +87,7 @@ const SupabaseCRUDComponent: React.FC = () => {
   };
 
   // Update user (UPDATE)
-  const updateUser = async (id: number, updates: Partial<{ name: string; email: string }>) => {
+  const updateUser = async (id: number, updates: never) => {
     try {
       setLoading(true);
       setError(null);
@@ -101,8 +101,9 @@ const SupabaseCRUDComponent: React.FC = () => {
       if (error) throw error;
 
       if (data) {
+        const dt:Array<object> = data;
         setUsers(prev => prev.map(user => 
-          user.id === id ? { ...user, ...data[0] } : user
+          user.id === id ? { ...user, ...dt[0] } : user
         ));
         setEditingUser(null);
         setFormData({ name: '', email: '' });
