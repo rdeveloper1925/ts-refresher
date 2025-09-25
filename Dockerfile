@@ -5,6 +5,13 @@ FROM node:20-alpine AS builder
 # Set working directory
 WORKDIR /app
 
+# Accept build args for env variables
+ARG VITE_SUPABASE_URL
+ARG VITE_SUPABASE_SECRET
+
+ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
+ENV VITE_SUPABASE_SECRET=$VITE_SUPABASE_SECRET
+
 # Install dependencies first (better Docker layer caching)
 # Copy package files to leverage Docker's layer caching
 COPY package*.json ./
