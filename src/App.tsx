@@ -1,12 +1,13 @@
-import { useState } from 'react'
+
 import BlogHeader from './components/mine/BlogHeader'
+import Design from './components/mine/Design'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <BlogHeader/>
+      <Design/>
     </>
     
   )
