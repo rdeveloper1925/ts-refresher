@@ -3,6 +3,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
+.colors{
+  --primary: #64bea3;
+  --dark: #3b7161;
+  --light: #84ffda;
+  --accent: #ca02f1;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -120,4 +127,46 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.login-inputs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-inputs input{
+  border: 1px solid green;
+  border-radius: 5px;
+  line-height: 35px;
+  padding-left: 10px
+}
+
+.login-inputs input:focus{
+  border: 3px solid green;
+}
+
+button.submit:hover{
+  background-color: green;
+}
+
+.oauth-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.oauth-section > div{
+  color: #008000;
+  border: 1px green solid;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.oauth-section > div:hover{
+transition: all .5s ease 0s;
+  background-color: green;
+  color: white;
+  cursor: pointer;
 }
