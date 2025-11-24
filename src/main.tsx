@@ -9,6 +9,7 @@ import SupabaseCRUDComponent from './components/mine/SupabaseCRUD.tsx'
 import Login from './pages/Login.tsx'
 import ReactToPDF from './pages/ReactToPDF.tsx'
 import RenderPDF from './pages/RenderPDF.tsx'
+import JacPDF from './pages/JacPDF.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
       <Route element={<SupabaseCRUDComponent />} path='/supabase'/>
       <Route element={<ReactToPDF />} path='/react-to-pdf'/>
       <Route element={<RenderPDF />} path='/render-pdf'/>
+      <Route element={<JacPDF />} path='/jac-pdf'/>
       <Route element={<NotFound/>} path='*'/>
     </Routes>
     </BrowserRouter>
