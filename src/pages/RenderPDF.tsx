@@ -1,9 +1,5 @@
 import React from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
-import ReactPDF from '@react-pdf/renderer';
-import ReactDOM from 'react-dom';
-import { PDFViewer } from '@react-pdf/renderer';
-import { Table } from 'lucide-react';
 // Create styles
 const styles = StyleSheet.create({
     page: {
@@ -85,7 +81,7 @@ const RenderPDF = () => {
         <>
             <div>
                 <PDFDownloadLink document={<RenderPDFSetup />} fileName="render-pdf.pdf">
-                    {({ blob, url, loading, error }) =>
+                    {({ loading }) =>
                         loading ? 'Loading document...' : 'Download now!'
                     }
                 </PDFDownloadLink>

@@ -6,7 +6,6 @@ import selfHostedSupabase from './supabase';
 const EmlPass = () => {
     const [errors, setErrors] = useState<string[]>([]);
     const [input, setInput] = useState<LoginSchema>({ email: '', password: '' });
-    const [session, setSession] = useState({});
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>, label: string) => {
         setInput(prev => ({ ...prev, [label]: e.target.value }));

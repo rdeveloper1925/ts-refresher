@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   Document,
   Page,
@@ -6,7 +6,6 @@ import {
   View,
   StyleSheet,
   PDFDownloadLink,
-  usePDF,
 } from '@react-pdf/renderer';
 
 /*
@@ -230,7 +229,7 @@ export default function JacPDF() {
         <h2 className="text-xl font-bold">Invoice Preview</h2>
         <div className="flex gap-2">
           <PDFDownloadLink document={<PdfInvoice />} fileName={`invoice-today.pdf`}>
-            {({ blob, url, loading, error }) => (
+            {({ loading }) => (
               <button className="px-3 py-1 border rounded bg-white">{loading ? 'Preparing...' : 'Download PDF'}</button>
             )}
           </PDFDownloadLink>
