@@ -8,101 +8,63 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: production  # Use production stage from multi-stage build
-    
+      target: production # Use production stage from multi-stage build
+
     # Container name for easier management
-    container_name: coolify-front
-    
-    # Port mapping: host:container
-    # ports:
-    #   #- "80:5173"  # Map host port 3000 to container port 80
-    #   - "80:80"
-    
+    container_name: matt-apps
+
     # Environment variables
     environment:
       - NODE_ENV=production
-    
+
     # Restart policy for production reliability
     restart: unless-stopped
-    
+
     # Health check configuration
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-    
+
     # Resource limits for container security and stability
     deploy:
       resources:
         limits:
-          cpus: '0.5'      # Limit to 0.5 CPU cores
-          memory: 256M     # Limit to 256MB RAM
+          cpus: '0.5' # Limit to 0.5 CPU cores
+          memory: 256M # Limit to 256MB RAM
         reservations:
-          cpus: '0.25'     # Reserve 0.25 CPU cores
-          memory: 128M     # Reserve 128MB RAM
-    
+          cpus: '0.25' # Reserve 0.25 CPU cores
+          memory: 128M # Reserve 128MB RAM
+
     # Security options
     security_opt:
-      - no-new-privileges:true  # Prevent privilege escalation
-    
+      - no-new-privileges:true # Prevent privilege escalation
+
     # Read-only root filesystem for security (with tmpfs for writable areas)
     read_only: true
     tmpfs:
       - /var/cache/nginx:rw,noexec,nosuid,size=50m
       - /var/log/nginx:rw,noexec,nosuid,size=50m
       - /var/run:rw,noexec,nosuid,size=50m
-    
+
     # Labels for container management and monitoring
     labels:
-      - "traefik.enable=true"  # Enable if using Traefik reverse proxy
+      - "traefik.enable=true" # Enable if using Traefik reverse proxy
       - "traefik.http.routers.react-app.rule=Host(`localhost`)"
       - "com.docker.compose.project=coolify-front"
-    
+
     # Networks
     networks:
       - frontend
-    
+
     # Logging configuration
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
-
-  # Optional: Reverse proxy service (Traefik example)
-  # generate dashboard auth: htpasswd -nb matt "Servering@123" | sed -e 's/\$/\$\$/g'
-  # reverse-proxy:
-  #   image: traefik:v3.5
-  #   container_name: traefik
-  #   command:
-  #     - "--api.dashboard=true"
-  #     - "--api.insecure=false"
-  #     - "--providers.docker=true"
-  #     - "--providers.docker.exposedbydefault=false"
-  #     - "--entrypoints.web.address=:80"
-  #     - "--entrypoints.websecure.address=:443"
-    
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"  # Traefik dashboard
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
-  #   networks:
-  #     - frontend
-  #   restart: unless-stopped
-  #   labels:
-  #     # Enable Traefik for this service
-  #     - "traefik.enable=true"
-
-  #     # Dashboard router
-  #     - "traefik.http.routers.dashboard.rule=Host(`dashboard.docker.localhost`)"
-  #     - "traefik.http.routers.dashboard.entrypoints=web"
-  #     - "traefik.http.routers.dashboard.service=api@internal"
-  #     # Basic‑auth middleware
-  #     - "traefik.http.middlewares.dashboard-auth.basicauth.users=matt:$$apr1$$9v40sdO8$$Ox83ReU8JQkwxJgFfWb6X0"
-  #     - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
 
 # Network configuration
 networks:

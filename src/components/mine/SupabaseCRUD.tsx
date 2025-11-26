@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 // Types for our data
@@ -40,7 +40,7 @@ const SupabaseCRUDComponent: React.FC = () => {
   });
 
   // Fetch all users (READ)
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -59,7 +59,7 @@ const SupabaseCRUDComponent: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [supabase]);
 
   // Create new user (CREATE)
   const createUser = async (userData: never) => {
@@ -170,7 +170,7 @@ const SupabaseCRUDComponent: React.FC = () => {
   // Load users on component mount
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [fetchUsers]);
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">

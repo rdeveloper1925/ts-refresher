@@ -4,7 +4,7 @@ import { CalendarEventSchema,  type CalendarEvent } from "./schema.ts";
 
 export async function extractCalendarEvent(input: string): Promise<CalendarEvent | null> {
   const response = await client.chat.completions.create({
-    model: "gpt-4.1", // or "gpt-4o-mini" for cheaper
+    model: "gpt-4o-mini", // or "gpt-4o-mini" for cheaper
     messages: [
       { role: "system", content: "You are an AI that extracts structured event data from natural language." },
       { role: "user", content: input },
