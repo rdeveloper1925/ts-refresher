@@ -35,6 +35,9 @@ RUN npm run build
 # Stage 2: Production server
 FROM nginx:alpine AS production
 
+# Set production environment variable
+ENV NODE_ENV=production
+
 # Install security updates and reduce image size
 RUN apk --no-cache add curl && \
     rm -rf /var/cache/apk/*
@@ -45,31 +48,15 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Create non-root user for security
-# RUN addgroup -g 1001 -S nginx && \
-#     adduser -S -D -H -u 1001 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx
-
-# Change ownership of nginx directories
-# RUN chown -R nginx:nginx /var/cache/nginx && \
-#     chown -R nginx:nginx /var/log/nginx && \
-#     chown -R nginx:nginx /etc/nginx/conf.d
-
 # Create nginx PID directory
-# RUN touch /var/run/nginx.pid && \
-#     chown -R nginx:nginx /var/run/nginx.pid
-RUN touch /var/run/nginx.pid 
-    #&& \
-    #chown -R nginx:nginx /var/run/nginx.pid
-
-# Switch to non-root user
-#USER nginx
+RUN touch /var/run/nginx.pid
 
 # Expose port (standard HTTP port)
 EXPOSE 80
 
-# Add health check for container orchestration
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/ || exit 1
+# Add health check matching previous docker-compose configuration
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost/health || exit 1
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]

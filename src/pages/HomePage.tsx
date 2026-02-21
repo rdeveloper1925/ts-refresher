@@ -1,4 +1,3 @@
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -25,7 +24,7 @@ import {
     Terminal,
     User,
 } from 'lucide-react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const HomePage = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -36,6 +35,22 @@ const HomePage = () => {
 
     const heroY = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
     const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+    // Force dark mode for this page only
+    useEffect(() => {
+        // Save the previous theme state
+        const previousTheme = document.documentElement.classList.contains('dark');
+        
+        // Force dark mode
+        document.documentElement.classList.add('dark');
+
+        // Cleanup: restore previous theme when component unmounts
+        return () => {
+            if (!previousTheme) {
+                document.documentElement.classList.remove('dark');
+            }
+        };
+    }, []);
 
     // Animation variants
     const fadeInUp = {
@@ -88,43 +103,54 @@ const HomePage = () => {
             { name: 'CI/CD (GitHub Actions, Jenkins)', level: 85 },
             { name: 'Linux Administration', level: 88 },
             { name: 'AWS/GCP', level: 80 },
-            { name: 'Terraform', level: 75 },
-            { name: 'Monitoring (Prometheus, Grafana)', level: 78 },
         ],
     };
 
     const experiences = [
         {
-            title: 'Senior Full Stack Developer',
-            company: 'TechCorp Solutions',
-            period: '2021 - Present',
+            title: 'Applications Analyst & Developer',
+            company: 'Municipal Government',
+            period: '2024 - Present',
             description:
-                'Leading development of cloud-native applications using React and PHP. Architected and deployed microservices infrastructure on Kubernetes, reducing deployment time by 60%.',
-            tech: ['React', 'PHP', 'Docker', 'Kubernetes', 'AWS'],
+                'Worked as part of an enterprise IT team supporting Oracle PeopleSoft Human Capital Management (HCM) systems for a large municipal workforce. Responsible for developing, customizing, integrating, and supporting HR, Payroll, and Benefits modules while ensuring system reliability, compliance, and data integrity.',
+            tech: ['PeopleSoft', 'Oracle Cloud', 'Linux', 'Oracle Database', 'PL/SQL'],
         },
         {
-            title: 'DevOps Engineer',
-            company: 'CloudScale Inc',
-            period: '2019 - 2021',
+            title: 'Lead Software Developer',
+            company: 'Advertising Agency',
+            period: '2023 - 2024',
             description:
-                'Implemented CI/CD pipelines and infrastructure automation. Managed production Kubernetes clusters serving 2M+ requests daily. Reduced infrastructure costs by 40% through optimization.',
-            tech: ['Docker', 'Kubernetes', 'Terraform', 'Jenkins', 'Prometheus'],
+                'Full Stack Developer on a lean Agile team responsible for building, maintaining, and scaling three B2B and B2C web applications, contributing across frontend, backend, database, and infrastructure layers with a focus on AI, performance, and data-driven product improvements.',
+            tech: ['React', 'PHP', 'TypeScript', 'MySQL', 'Docker', 'Linux', 'CI/CD'],
         },
         {
-            title: 'Full Stack Developer',
-            company: 'WebDev Studio',
-            period: '2017 - 2019',
+            title: 'Software Developer',
+            company: 'Environmental Sustainability Consulting',
+            period: '2022 - 2023',
             description:
-                'Built responsive web applications using modern JavaScript frameworks and PHP backends. Collaborated with cross-functional teams to deliver high-quality software solutions.',
-            tech: ['JavaScript', 'PHP', 'Laravel', 'MySQL', 'Git'],
+                'As a key member of a ten-person engineering team, I specialize in utilizing modern frameworks such as React.js, ExtJs, Symfony, and Laravel to grow and maintain different software products in a scalable and efficient manner.',
+            tech: ['React', 'ExtJs', 'Symfony', 'Laravel', 'MySQL', 'Linux', 'CI/CD'],
+        },
+        {
+            title: 'Junior Software Developer',
+            company: 'Digital Marketing Agency',
+            period: '2020 - 2022',
+            description:
+                'I was the lead developer for a Google ads keywords optimization tool (Ultragranular) and charged with implementing new features and refactoring code for performance enhancement while flushing out legacy and/or redundant code.',
+            tech: ['React', 'PHP', 'TypeScript', 'MySQL', 'Google Ads API', 'Linux', 'CI/CD'],
+        },
+        {
+            title: 'Applications Support Specialist',
+            company: 'Digital Marketing Agency',
+            period: '2019 - 2022',
+            description:
+                'Managed and maintained computer hardware, software, and network infrastructure, including servers, routers, switches, and VPS environments. Ensured high ticket resolution rates, performed root cause analysis on recurring issues, and migrated onsite applications to cloud services with minimal downtime. Maintained system updates and security, provisioned virtual machines, upgraded network devices, and regularly tested backups to support disaster recovery.',
+            tech: ['Windows', 'Linux', 'Network Administration', 'Virtualization', 'Disaster Recovery', 'System Updates', 'Security'],
         },
     ];
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-gradient-to-b from-background via-background to-muted">
-            {/* Theme Toggle */}
-            <ThemeToggle />
-
+        <div ref={containerRef} className="min-h-screen bg-linear-to-b from-background via-background to-muted">
             {/* Hero Section */}
             <motion.section
                 style={{ y: heroY, opacity: heroOpacity }}
@@ -154,8 +180,8 @@ const HomePage = () => {
                             whileHover={{ scale: 1.1, rotate: 360 }}
                             transition={{ duration: 0.6 }}
                         >
-                            <Avatar className="w-32 h-32 border-4 border-primary shadow-2xl bg-gradient-to-br from-primary to-purple-600">
-                                <AvatarFallback className="bg-gradient-to-br from-primary to-purple-600">
+                            <Avatar className="w-32 h-32 border-4 border-primary shadow-2xl bg-linear-to-br from-primary to-purple-600">
+                                <AvatarFallback className="bg-linear-to-br from-primary to-[#74dcbc]">
                                     <User className="w-16 h-16 text-primary-foreground" />
                                 </AvatarFallback>
                             </Avatar>
@@ -166,9 +192,9 @@ const HomePage = () => {
                         initial="hidden"
                         animate="visible"
                         variants={fadeInUp}
-                        className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                        className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-[#74dcbc] to-[#74dcbc] bg-clip-text text-transparent"
                     >
-                        Matt Anderson
+                        Matt Rodney
                     </motion.h1>
 
                     <motion.p
@@ -177,7 +203,7 @@ const HomePage = () => {
                         variants={fadeInUp}
                         className="text-2xl md:text-3xl text-muted-foreground mb-8"
                     >
-                        Full Stack Developer & DevOps Engineer
+                        Full Stack Developer | Applications Administrator
                     </motion.p>
 
                     <motion.div
@@ -186,7 +212,7 @@ const HomePage = () => {
                         variants={staggerContainer}
                         className="flex flex-wrap justify-center gap-3 mb-12"
                     >
-                        {['React', 'PHP', 'JavaScript', 'Docker', 'Kubernetes'].map((tech) => (
+                        {['React', 'PHP', 'TypeScript', 'Docker', 'PeopleSoft', 'Oracle Cloud'].map((tech) => (
                             <motion.div key={tech} variants={scaleIn}>
                                 <Badge variant="secondary" className="text-lg px-4 py-2">
                                     {tech}
@@ -201,11 +227,8 @@ const HomePage = () => {
                         transition={{ delay: 0.8, duration: 0.6 }}
                         className="flex gap-4 justify-center"
                     >
-                        <Button size="lg" className="gap-2">
-                            <Mail className="w-4 h-4" />
-                            Get in Touch
-                        </Button>
-                        <Button size="lg" variant="outline" className="gap-2">
+
+                        <Button style={{ cursor: 'pointer' }} onClick={() => window.open('https://github.com/rdeveloper1925', '_blank')} size="lg" variant="outline" className="gap-2">
                             <Github className="w-4 h-4" />
                             View Projects
                         </Button>
@@ -251,20 +274,20 @@ const HomePage = () => {
                                         <Code className="w-8 h-8 text-primary" />
                                     </div>
                                     <div>
-                                        <p className="text-lg leading-relaxed text-muted-foreground mb-4">
-                                            I'm a passionate Full Stack Developer and DevOps Engineer with over 7 years of
-                                            experience building scalable web applications and cloud infrastructure. I thrive
-                                            on solving complex problems and automating workflows to improve efficiency.
+                                        <p className="text-lg text-justify leading-relaxed text-muted-foreground mb-4">
+                                            Full Stack Developer with a Bachelor’s degree in Information and Communications Technology and 5+ years
+                                            of hands-on experience building, scaling, and supporting production-grade B2B and B2C web applications.
+                                            Proven expertise across the full development stack including PHP, JavaScript, React, MySQL, and Linuxbased infrastructure with a strong focus on performance optimization, AI-driven features, SEO, and datainformed product improvements.
                                         </p>
-                                        <p className="text-lg leading-relaxed text-muted-foreground mb-4">
-                                            My expertise spans the entire development lifecycle, from crafting intuitive
-                                            user interfaces with React to architecting robust backend systems with PHP and
-                                            Node.js. On the DevOps side, I specialize in containerization, orchestration,
-                                            and CI/CD automation.
+                                        <p className="text-lg text-justify leading-relaxed text-muted-foreground mb-4">
+                                            Experienced in Agile team environments, I consistently deliver secure, mobile-first, and highly performant
+                                            web applications, while also bringing a solid background in application support, system administration, and
+                                            customer-facing troubleshooting. Adept at translating complex technical concepts into clear solutions for
+                                            both technical and non-technical stakeholders, ensuring reliability, scalability, and an excellent end-user
+                                            experience.
                                         </p>
                                         <p className="text-lg leading-relaxed text-muted-foreground">
-                                            When I'm not coding, you'll find me contributing to open-source projects,
-                                            exploring new technologies, or sharing knowledge with the developer community.
+                                            When I'm not coding, you'll find me playing <a className="text-purple-500" target="_blank" href="https://steamcommunity.com/app/1366540">Dyson Sphere Program</a>.
                                         </p>
                                     </div>
                                 </div>
@@ -277,7 +300,7 @@ const HomePage = () => {
                                         <MapPin className="w-5 h-5 text-primary" />
                                         <div>
                                             <p className="text-sm text-muted-foreground">Location</p>
-                                            <p className="font-semibold">San Francisco, CA</p>
+                                            <p className="font-semibold">Toronto, ON</p>
                                         </div>
                                     </motion.div>
                                     <motion.div
@@ -567,22 +590,22 @@ const HomePage = () => {
                             {
                                 icon: Mail,
                                 label: 'Email',
-                                value: 'matt@example.com',
-                                href: 'mailto:matt@example.com',
+                                value: 'matt@mattapps.org',
+                                href: 'mailto:matt@mattapps.org',
                                 color: 'text-red-500',
                             },
                             {
                                 icon: Github,
                                 label: 'GitHub',
-                                value: 'github.com/mattanderson',
-                                href: 'https://github.com',
+                                value: 'github.com/rdeveloper1925',
+                                href: 'https://github.com/rdeveloper1925',
                                 color: 'text-gray-500',
                             },
                             {
                                 icon: Linkedin,
                                 label: 'LinkedIn',
-                                value: 'linkedin.com/in/mattanderson',
-                                href: 'https://linkedin.com',
+                                value: 'linkedin.com/in/mattrodneys',
+                                href: 'https://www.linkedin.com/in/mattrodneys/',
                                 color: 'text-blue-500',
                             },
                         ].map((contact) => (
@@ -608,23 +631,13 @@ const HomePage = () => {
                         ))}
                     </motion.div>
 
-                    <motion.div
-                        variants={fadeInUp}
-                        className="mt-12 text-center"
-                    >
-                        <Button size="lg" className="gap-2">
-                            <Mail className="w-5 h-5" />
-                            Send me an email
-                        </Button>
-                    </motion.div>
                 </div>
             </motion.section>
 
             {/* Footer */}
             <footer className="py-8 px-4 border-t">
                 <div className="max-w-4xl mx-auto text-center text-muted-foreground">
-                    <p>© 2024 Matt Anderson. Built with React, TypeScript, and Tailwind CSS.</p>
-                    <p className="text-sm mt-2">Deployed with Docker & Kubernetes</p>
+                    <p>© { new Date().getFullYear() } Matt Rodney. Built with React, TypeScript, and Tailwind CSS.</p>
                 </div>
             </footer>
         </div>

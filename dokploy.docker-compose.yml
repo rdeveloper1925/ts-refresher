@@ -1,0 +1,63 @@
+# Dokploy-specific docker-compose configuration
+# Use this if deploying via Dokploy's Docker Compose method
+
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+
+    container_name: matt-apps
+
+    environment:
+      - NODE_ENV=production
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+    security_opt:
+      - no-new-privileges:true
+
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:rw,noexec,nosuid,size=50m
+      - /var/log/nginx:rw,noexec,nosuid,size=50m
+      - /var/run:rw,noexec,nosuid,size=50m
+
+    # Dokploy-specific labels for Traefik integration
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.react-app.rule=Host(`your-domain.com`)"
+      - "traefik.http.routers.react-app.entrypoints=websecure"
+      - "traefik.http.routers.react-app.tls.certResolver=letsencrypt"
+      - "traefik.http.services.react-app.loadbalancer.server.port=80"
+
+    # Connect to Dokploy network
+    networks:
+      - dokploy-network
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  dokploy-network:
+    external: true
