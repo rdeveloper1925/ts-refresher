@@ -13,7 +13,7 @@ services:
         - VITE_AUTH_REDIR=${VITE_AUTH_REDIR}
     container_name: mattapps-frontend
     ports:
-      - "3999:80"
+      - "80"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/health"]
