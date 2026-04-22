@@ -112,7 +112,7 @@ const HomePage = () => {
             company: 'Municipal Government',
             period: '2024 - Present',
             description:
-                'Worked as part of an enterprise IT team supporting Oracle PeopleSoft Human Capital Management (HCM) systems for a large municipal workforce. Responsible for developing, customizing, integrating, and supporting HR, Payroll, and Benefits modules while ensuring system reliability, compliance, and data integrity.',
+                'Enterprise IT member supporting Oracle PeopleSoft HCM for a large municipal workforce. Own customization, integration, and sustainment across HR, Payroll, and Benefits—partnering with HR and compliance stakeholders so changes stay auditable, payroll stays accurate, and production stays stable.',
             tech: ['PeopleSoft', 'Oracle Cloud', 'Linux', 'Oracle Database', 'PL/SQL'],
         },
         {
@@ -120,7 +120,7 @@ const HomePage = () => {
             company: 'Advertising Agency',
             period: '2023 - 2024',
             description:
-                'Full Stack Developer on a lean Agile team responsible for building, maintaining, and scaling three B2B and B2C web applications, contributing across frontend, backend, database, and infrastructure layers with a focus on AI, performance, and data-driven product improvements.',
+                'Lead engineer on a lean Agile team delivering three B2B/B2C products end to end: React and TypeScript on the client, PHP and MySQL behind the API, Dockerized environments and CI/CD for predictable releases. Focused on measurable gains—latency, SEO, and workflow automation—while keeping technical debt visible and paid down.',
             tech: ['React', 'PHP', 'TypeScript', 'MySQL', 'Docker', 'Linux', 'CI/CD'],
         },
         {
@@ -128,7 +128,7 @@ const HomePage = () => {
             company: 'Environmental Sustainability Consulting',
             period: '2022 - 2023',
             description:
-                'As a key member of a ten-person engineering team, I specialize in utilizing modern frameworks such as React.js, ExtJs, Symfony, and Laravel to grow and maintain different software products in a scalable and efficient manner.',
+                'Core contributor on a ten-person engineering org shipping multiple products. Built and extended features in React, Ext JS, Symfony, and Laravel; collaborated on schema and API design so features scaled without constant firefighting.',
             tech: ['React', 'ExtJs', 'Symfony', 'Laravel', 'MySQL', 'Linux', 'CI/CD'],
         },
         {
@@ -136,7 +136,7 @@ const HomePage = () => {
             company: 'Digital Marketing Agency',
             period: '2020 - 2022',
             description:
-                'I was the lead developer for a Google ads keywords optimization tool (Ultragranular) and charged with implementing new features and refactoring code for performance enhancement while flushing out legacy and/or redundant code.',
+                'Primary developer on Ultragranular, a Google Ads keyword optimization product: shipped new capabilities, refactored hot paths for performance, and retired legacy code paths so the codebase stayed understandable for the next hire.',
             tech: ['React', 'PHP', 'TypeScript', 'MySQL', 'Google Ads API', 'Linux', 'CI/CD'],
         },
         {
@@ -144,7 +144,7 @@ const HomePage = () => {
             company: 'Digital Marketing Agency',
             period: '2019 - 2022',
             description:
-                'Managed and maintained computer hardware, software, and network infrastructure, including servers, routers, switches, and VPS environments. Ensured high ticket resolution rates, performed root cause analysis on recurring issues, and migrated onsite applications to cloud services with minimal downtime. Maintained system updates and security, provisioned virtual machines, upgraded network devices, and regularly tested backups to support disaster recovery.',
+                'Owned infrastructure and tier-2/3 support for hardware, software, and network stacks—servers, routing, switching, and VPS estates. Drove root-cause fixes on repeat incidents, executed low-downtime cloud migrations, and kept patching, backups, and DR drills honest so restores were a procedure, not a hope.',
             tech: ['Windows', 'Linux', 'Network Administration', 'Virtualization', 'Disaster Recovery', 'System Updates', 'Security'],
         },
     ];
@@ -203,7 +203,7 @@ const HomePage = () => {
                         variants={fadeInUp}
                         className="text-2xl md:text-3xl text-muted-foreground mb-8"
                     >
-                        Full Stack Developer | Applications Administrator
+                        Full-stack engineer · Enterprise apps, integrations, and cloud-ready delivery
                     </motion.p>
 
                     <motion.div
@@ -275,19 +275,30 @@ const HomePage = () => {
                                     </div>
                                     <div>
                                         <p className="text-lg text-justify leading-relaxed text-muted-foreground mb-4">
-                                            Full Stack Developer with a Bachelor’s degree in Information and Communications Technology and 5+ years
-                                            of hands-on experience building, scaling, and supporting production-grade B2B and B2C web applications.
-                                            Proven expertise across the full development stack including PHP, JavaScript, React, MySQL, and Linuxbased infrastructure with a strong focus on performance optimization, AI-driven features, SEO, and datainformed product improvements.
+                                            I am a full-stack engineer with a BSc in Information and Communications Technology and six years shipping
+                                            and operating production web systems—from lean agency squads to enterprise HR platforms. I work comfortably
+                                            across PHP and Laravel, TypeScript and React, relational data, and Linux-based hosting, with a habit of
+                                            profiling bottlenecks, tightening release pipelines, and turning product goals into measurable outcomes:
+                                            performance, SEO, and iteration guided by real usage data.
                                         </p>
                                         <p className="text-lg text-justify leading-relaxed text-muted-foreground mb-4">
-                                            Experienced in Agile team environments, I consistently deliver secure, mobile-first, and highly performant
-                                            web applications, while also bringing a solid background in application support, system administration, and
-                                            customer-facing troubleshooting. Adept at translating complex technical concepts into clear solutions for
-                                            both technical and non-technical stakeholders, ensuring reliability, scalability, and an excellent end-user
-                                            experience.
+                                            That breadth matters in practice: I have led multi-app delivery, integrated third-party APIs, and supported
+                                            the same systems in production. Colleagues get someone who can pair on a React feature in the morning,
+                                            trace a database or deployment issue in the afternoon, and explain the trade-offs clearly to non-technical
+                                            stakeholders. I aim for reliable releases, sensible security defaults, and interfaces that stay fast on
+                                            real devices and networks.
                                         </p>
                                         <p className="text-lg leading-relaxed text-muted-foreground">
-                                            When I'm not coding, you'll find me playing <a className="text-purple-500" target="_blank" href="https://steamcommunity.com/app/1366540">Dyson Sphere Program</a>.
+                                            Outside of work I unwind with factory games—lately{' '}
+                                            <a
+                                                className="text-purple-500 hover:underline"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                href="https://steamcommunity.com/app/1366540"
+                                            >
+                                                Dyson Sphere Program
+                                            </a>
+                                            .
                                         </p>
                                     </div>
                                 </div>
@@ -309,8 +320,8 @@ const HomePage = () => {
                                     >
                                         <Briefcase className="w-5 h-5 text-primary" />
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Experience</p>
-                                            <p className="font-semibold">7+ Years</p>
+                                            <p className="text-sm text-muted-foreground">In technology</p>
+                                            <p className="font-semibold">7+ years</p>
                                         </div>
                                     </motion.div>
                                     <motion.div
@@ -320,7 +331,7 @@ const HomePage = () => {
                                         <GraduationCap className="w-5 h-5 text-primary" />
                                         <div>
                                             <p className="text-sm text-muted-foreground">Education</p>
-                                            <p className="font-semibold">BS Computer Science</p>
+                                            <p className="font-semibold">BSc, Information & Communications Technology</p>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -359,7 +370,7 @@ const HomePage = () => {
                                         </div>
                                         <CardTitle>Frontend</CardTitle>
                                     </div>
-                                    <CardDescription>Building beautiful, responsive user interfaces</CardDescription>
+                                    <CardDescription>Accessible, responsive UI with an eye for performance and maintainability</CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     {skills.frontend.map((skill, index) => (
@@ -395,7 +406,7 @@ const HomePage = () => {
                                         </div>
                                         <CardTitle>Backend</CardTitle>
                                     </div>
-                                    <CardDescription>Crafting robust server-side solutions</CardDescription>
+                                    <CardDescription>APIs, data modeling, and services that hold up under real traffic</CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     {skills.backend.map((skill, index) => (
@@ -431,7 +442,7 @@ const HomePage = () => {
                                         </div>
                                         <CardTitle>DevOps & Cloud</CardTitle>
                                     </div>
-                                    <CardDescription>Automating deployment and infrastructure</CardDescription>
+                                    <CardDescription>Containers, pipelines, and environments you can repeat and roll back</CardDescription>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     {skills.devops.map((skill, index) => (
@@ -471,9 +482,10 @@ const HomePage = () => {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                                    I specialize in building and maintaining cloud-native infrastructure with a focus
-                                    on automation, scalability, and reliability. My DevOps philosophy centers around
-                                    Infrastructure as Code, continuous delivery, and observability.
+                                    I treat operations as part of the product: reproducible builds, staged rollouts, and
+                                    enough observability to catch regressions before users do. That usually means
+                                    containers, automated CI/CD, pragmatic cloud usage, and Linux fundamentals—not
+                                    chasing every new tool, but choosing what keeps teams shipping safely.
                                 </p>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     {[
@@ -580,8 +592,8 @@ const HomePage = () => {
                         <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
                         <Separator className="w-24 mx-auto h-1 bg-primary" />
                         <p className="text-muted-foreground mt-6 text-lg">
-                            I'm always open to discussing new projects, creative ideas, or opportunities to be
-                            part of your vision.
+                            If you are hiring for full-stack or enterprise application work—or want a concise walkthrough
+                            of something I have shipped—send a note. I respond fastest to specific roles, stacks, and problems.
                         </p>
                     </motion.div>
 
