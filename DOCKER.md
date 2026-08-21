@@ -134,22 +134,10 @@ docker rmi ts-refresher:latest
 
 ## Build Arguments
 
-The Dockerfile accepts the following build arguments for Vite environment variables:
-
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_SECRET`
-- `VITE_CLOUD_SUPABASE_URL`
-- `VITE_CLOUD_SUPABSE_SECRET`
-- `VITE_AUTH_REDIR`
-
-Example:
+This frontend no longer requires Vite env build args (HomePage-only static app).
 
 ```bash
-docker build \
-    --target production \
-    --build-arg VITE_SUPABASE_URL=your_url \
-    --build-arg VITE_SUPABASE_SECRET=your_secret \
-    -t ts-refresher:latest .
+docker build --target production -t ts-refresher:latest .
 ```
 
 ## Port Configuration

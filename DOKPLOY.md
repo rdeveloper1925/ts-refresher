@@ -56,14 +56,7 @@ This method uses your Dockerfile directly and is simpler to manage.
    - **Port**: `80`
 
 5. **Environment Variables**
-   Add your build-time variables (if needed):
-   ```
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_SECRET=your_secret
-   VITE_CLOUD_SUPABASE_URL=your_cloud_url
-   VITE_CLOUD_SUPABSE_SECRET=your_cloud_secret
-   VITE_AUTH_REDIR=your_redirect_url
-   ```
+   None required for the HomePage-only frontend build.
 
 6. **Domain Configuration**
    - **Domain**: Enter your domain (e.g., `app.yourdomain.com`)
@@ -183,13 +176,6 @@ Ensure your nginx configuration serves this endpoint.
 2. Check Traefik configuration in Dokploy
 3. Ensure labels are correctly set
 4. Check firewall allows ports 80 and 443
-
-### Environment Variables Not Working
-
-For Vite apps, remember:
-- Variables must be prefixed with `VITE_`
-- They're baked into the build at build-time
-- Changing them requires a rebuild
 
 ### Port Issues
 
