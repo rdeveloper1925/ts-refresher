@@ -1,0 +1,29 @@
+# home-svr Dokploy + Cloudflare tunnel origin.
+# Binds only on localhost so the existing cloudflared hostname can target :8088.
+# Do not add Traefik labels; Cloudflare terminates public TLS.
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mattapps-frontend
+    ports:
+      - "127.0.0.1:8088:80"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost/health
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+    networks:
+      - frontend-network
+
+networks:
+  frontend-network:
+    driver: bridge
